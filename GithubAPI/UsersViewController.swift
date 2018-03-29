@@ -12,9 +12,9 @@ let cellIdentifier = "userCellIdentifier"
 let loadingCellIdentifier = "loadingCellIdentifier"
 
 class UsersViewController: UIViewController {
-    enum LayoutType {
-        case list
-        case grid
+    enum LayoutType:Int {
+        case list = 100
+        case grid = 200
     }
     
     @IBOutlet weak var usersCollectionView: UICollectionView!
@@ -25,13 +25,22 @@ class UsersViewController: UIViewController {
     var layoutType:LayoutType = .list
     
     @IBAction func changeLayout(_ sender: Any) {
+        guard let button = sender as? UIButton else {
+            return
+        }
+        
         switch layoutType {
         case .list:
-            self.layoutType = .grid
+            if button.tag == LayoutType.grid.rawValue {
+                self.layoutType = .grid
+                self.usersCollectionView.collectionViewLayout.invalidateLayout()
+            }
         case .grid:
-            self.layoutType = .list
+            if button.tag == LayoutType.list.rawValue {
+                self.layoutType = .list
+                self.usersCollectionView.collectionViewLayout.invalidateLayout()
+            }
         }
-        self.usersCollectionView.collectionViewLayout.invalidateLayout()
     }
 
     override func viewDidLoad() {

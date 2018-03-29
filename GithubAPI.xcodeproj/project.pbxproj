@@ -19,7 +19,7 @@
 		6E7ED87A206BE19600AFF76A /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ED879206BE19600AFF76A /* ServiceController.swift */; };
 		6E7ED881206C014900AFF76A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7ED87F206C014900AFF76A /* Assets.xcassets */; };
 		6E7ED883206C017200AFF76A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E7ED882206C017200AFF76A /* Info.plist */; };
-		6ED823A1206C762200D7CBD8 /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED823A0206C762200D7CBD8 /* PageCoordinator.swift */; };
+		6ED823A1206C762200D7CBD8 /* PageServiceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED823A0206C762200D7CBD8 /* PageServiceCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		6E7ED879206BE19600AFF76A /* ServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
 		6E7ED87F206C014900AFF76A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E7ED882206C017200AFF76A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6ED823A0206C762200D7CBD8 /* PageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
+		6ED823A0206C762200D7CBD8 /* PageServiceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageServiceCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +72,7 @@
 				6E7ED85A206BD6D000AFF76A /* AppDelegate.swift */,
 				6E7ED85C206BD6D000AFF76A /* UsersViewController.swift */,
 				6E7ED871206BD99C00AFF76A /* UserCollectionViewCell.swift */,
+				6ED823A0206C762200D7CBD8 /* PageServiceCoordinator.swift */,
 				6E7ED873206BE16B00AFF76A /* Model */,
 				6E7ED874206BE17800AFF76A /* Services */,
 				6E7ED87B206C003A00AFF76A /* Storyboards */,
@@ -87,7 +88,6 @@
 				6E7ED861206BD6D000AFF76A /* GithubAPI.xcdatamodeld */,
 				6E7ED875206BE18900AFF76A /* User.swift */,
 				6E7ED876206BE18900AFF76A /* License.swift */,
-				6ED823A0206C762200D7CBD8 /* PageCoordinator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 				6E7ED85B206BD6D000AFF76A /* AppDelegate.swift in Sources */,
 				6E7ED87A206BE19600AFF76A /* ServiceController.swift in Sources */,
 				6E7ED878206BE18900AFF76A /* License.swift in Sources */,
-				6ED823A1206C762200D7CBD8 /* PageCoordinator.swift in Sources */,
+				6ED823A1206C762200D7CBD8 /* PageServiceCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

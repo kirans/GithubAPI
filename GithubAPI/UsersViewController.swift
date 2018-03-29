@@ -21,7 +21,7 @@ class UsersViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var users:[User] = []
-    var pageCoordinator:PageCoordinator = PageCoordinator()
+    var pageCoordinator:PageServiceCoordinator = PageServiceCoordinator()
     var layoutType:LayoutType = .list
     
     @IBAction func changeLayout(_ sender: Any) {
@@ -51,13 +51,34 @@ class UsersViewController: UIViewController {
     func setup() {
         User.dateFormatter.dateStyle = .short
         self.usersCollectionView.register(UINib.init(nibName:"UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        self.pageCoordinator = PageServiceCoordinator { (perPage, page, searchString, completion) in
+            guard let perPage = perPage, let page = page, let searchString = searchString else {
+                return
+            }
+            
+            ServiceController.sharedInstance.getUsers(byName:searchString, perPage:perPage, page:page) { (pageUsers, error) in
+                guard let users = pageUsers else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.users.append(contentsOf: users)
+                    self.usersCollectionView.reloadData()
+                    completion(users.count)
+                }
+            }
+        }
+
     }
     
     func refresh() {
         self.users = []
         self.pageCoordinator.refresh()
         self.usersCollectionView.reloadData()
-        self.loadUsers()
+        if let searchTerm = self.searchBar.text {
+            self.pageCoordinator.searchTerm = searchTerm
+        }
+        self.pageCoordinator.fetch {
+        }
     }
     
     func shouldShowLoadingIndicator() -> Bool {
@@ -182,7 +203,8 @@ extension UsersViewController:UIScrollViewDelegate {
         let maximumOffset = self.usersCollectionView.contentSize.height - self.usersCollectionView.frame.size.height
         
         if maximumOffset - currentOffset <= 150 {
-            self.loadUsers()
+            self.pageCoordinator.fetch {
+            }
         }
     }
 }

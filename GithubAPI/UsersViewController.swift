@@ -51,11 +51,12 @@ class UsersViewController: UIViewController {
     func setup() {
         User.dateFormatter.dateStyle = .short
         self.usersCollectionView.register(UINib.init(nibName:"UserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        
+        //Creates page service coordinator with specified service
         self.pageCoordinator = PageServiceCoordinator { (perPage, page, searchString, completion) in
             guard let perPage = perPage, let page = page, let searchString = searchString else {
                 return
             }
-            
             ServiceController.sharedInstance.getUsers(byName:searchString, perPage:perPage, page:page) { (pageUsers, error) in
                 guard let users = pageUsers else {
                     return
@@ -67,7 +68,6 @@ class UsersViewController: UIViewController {
                 }
             }
         }
-
     }
     
     func refresh() {
@@ -87,27 +87,6 @@ class UsersViewController: UIViewController {
             shouldShowIndicator = false
         }
         return shouldShowIndicator
-    }
-    
-    func loadUsers() {
-        guard let searchString = searchBar.text, searchString.count > 0, !self.pageCoordinator.fetching, self.pageCoordinator.more  else {
-            return
-        }
-        self.pageCoordinator.fetching = true
-        ServiceController.sharedInstance.getUsers(byName:searchString, page:self.users.count/10 + 1) { (pageUsers, error) in
-            if let users = pageUsers {
-                DispatchQueue.main.async {
-                    //TODO:Paging Logic should be moved to pageCordinator
-                    self.pageCoordinator.fetching = false
-                    if users.count < self.pageCoordinator.perPage {
-                        self.pageCoordinator.more = false
-                        self.pageCoordinator.page = self.pageCoordinator.page + 1
-                    }
-                    self.users.append(contentsOf: users)
-                    self.usersCollectionView.reloadData()
-                }
-            }
-        }
     }
     
     //TODO:Should calculate height of cell instead of using static height

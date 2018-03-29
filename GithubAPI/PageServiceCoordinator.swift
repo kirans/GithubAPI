@@ -29,6 +29,7 @@ class PageServiceCoordinator {
         requestClosure = closure
     }
     
+    //Fetches the data and update the cordinater behaviour
     func fetch(completion:@escaping ()->Void) {
         guard let closure = requestClosure, available else {
             return
@@ -47,6 +48,7 @@ class PageServiceCoordinator {
         }
     }
     
+    //resets the coordinator
     func refresh() {
         self.more = true
         self.fetching = false

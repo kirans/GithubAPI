@@ -36,7 +36,6 @@ class ServiceController {
         //TODO:HandleError
         let task = sharedSession.dataTask(with: url) { (data, response, err) in
             print("returned page..\(page)")
-
             guard err == nil else {
                 completion(nil, err)
                 return

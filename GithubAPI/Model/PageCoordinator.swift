@@ -24,7 +24,7 @@ class PageCoordinator {
     var requestClosure:ServiceRequestClosure?
     
     func fetch(completion:()->Void) {
-        guard let closure = requestClosure, available else {
+        guard let _ = requestClosure, available else {
             return
         }
         fetching = true

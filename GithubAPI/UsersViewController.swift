@@ -93,9 +93,9 @@ class UsersViewController: UIViewController {
         
         switch layoutType {
         case .list:
-            return CGSize(width: self.view.frame.width/2, height:height)
-        case .grid:
             return CGSize(width: self.view.frame.width, height:height)
+        case .grid:
+            return CGSize(width: self.view.frame.width/2, height:height)
         }
     }
     
